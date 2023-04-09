@@ -234,27 +234,15 @@ class DoodleMaker extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Container(
-          color: Colors.grey[850],
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  RepaintBoundary(
-                    key: _globalKey,
-                    child: Expanded(
-                      child: Container(
-                           height: 300,
-                          child: DoodlePage(),
-                      ),
+          child:
+              Expanded(
+                child:
+                    RepaintBoundary(
+                      key: _globalKey,
+                            child: DoodlePage(),
                     ),
-                  ),
-                ],
               ),
-              Column(
+/*              Column(
                 children: [
                   Center(
                     child: Row(
@@ -272,10 +260,7 @@ class DoodleMaker extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            ],
-          ),
-        ),
+              ),*/
       ),
     );
   }

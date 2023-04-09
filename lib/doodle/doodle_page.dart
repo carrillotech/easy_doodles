@@ -30,42 +30,22 @@ class DoodlePage extends HookWidget {
       duration: const Duration(milliseconds: 150),
       initialValue: 1,
     );
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            color: kCanvasColor,
-            width: double.maxFinite,
-            height: double.maxFinite,
-            child: DrawingCanvas(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              drawingMode: drawingMode,
-              selectedColor: selectedColor,
-              strokeSize: strokeSize,
-              eraserSize: eraserSize,
-              sideBarController: animationController,
-              currentSketch: currentSketch,
-              allSketches: allSketches,
-              canvasGlobalKey: canvasGlobalKey,
-              filled: filled,
-              polygonSides: polygonSides,
-              backgroundImage: backgroundImage,
-            ),
-          ),
-          Positioned(
-            top: kToolbarHeight + 10,
-            // left: -5,
-            child: SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(-1, 0),
-                end: Offset.zero,
-              ).animate(animationController),
-              child: CanvasSideBar(
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Container(
+              color: kCanvasColor,
+              width: double.maxFinite,
+              height: double.maxFinite,
+              child: DrawingCanvas(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
                 drawingMode: drawingMode,
                 selectedColor: selectedColor,
                 strokeSize: strokeSize,
                 eraserSize: eraserSize,
+                sideBarController: animationController,
                 currentSketch: currentSketch,
                 allSketches: allSketches,
                 canvasGlobalKey: canvasGlobalKey,
@@ -74,9 +54,31 @@ class DoodlePage extends HookWidget {
                 backgroundImage: backgroundImage,
               ),
             ),
-          ),
-          _CustomAppBar(animationController: animationController),
-        ],
+            Positioned(
+              top: kToolbarHeight + 10,
+              // left: -5,
+              child: SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(-1, 0),
+                  end: Offset.zero,
+                ).animate(animationController),
+                child: CanvasSideBar(
+                  drawingMode: drawingMode,
+                  selectedColor: selectedColor,
+                  strokeSize: strokeSize,
+                  eraserSize: eraserSize,
+                  currentSketch: currentSketch,
+                  allSketches: allSketches,
+                  canvasGlobalKey: canvasGlobalKey,
+                  filled: filled,
+                  polygonSides: polygonSides,
+                  backgroundImage: backgroundImage,
+                ),
+              ),
+            ),
+            _CustomAppBar(animationController: animationController),
+          ],
+        ),
       ),
     );
   }
@@ -91,8 +93,8 @@ class _CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // height: kToolbarHeight,
-      // width: double.maxFinite,
+       height: kToolbarHeight,
+       width: double.maxFinite,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Row(
