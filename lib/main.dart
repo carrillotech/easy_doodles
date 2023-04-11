@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'doodle/doodle_page.dart';
 
@@ -113,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: FittedBox(
                       fit: BoxFit.cover,
                       child:
-                      Text("Start Your Doodle",
+                      Text("Start A New Doodle",
                         style: TextStyle(fontSize: 45, color: Colors.blue[500]),
                       ),
                     ),
@@ -218,6 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
 class DoodleMaker extends StatelessWidget {
   const DoodleMaker({super.key});
 
+
   @override
   Widget build(BuildContext context) {
 
@@ -229,18 +231,31 @@ class DoodleMaker extends StatelessWidget {
           child: AppBar(
             backgroundColor: Colors.transparent,
             centerTitle: true,
-            title: Text('Simple Doodle App'),
+            title: const Text('Simple Doodle App'),
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: "paint_save",
+        tooltip: 'Save',
+        onPressed: () {
+          Text('Image Saved');
+          _saveScreen();
+        },
+        child: const Icon(Icons.save),
+      ),
       body: SafeArea(
           child:
-              Expanded(
-                child:
-                    RepaintBoundary(
-                      key: _globalKey,
-                            child: DoodlePage(),
-                    ),
+              Column(
+                children: [
+                  Expanded(
+                    child:
+                        RepaintBoundary(
+                          key: _globalKey,
+                                child: DoodlePage(),
+                        ),
+                  ),
+                ],
               ),
 /*              Column(
                 children: [
@@ -261,11 +276,16 @@ class DoodleMaker extends StatelessWidget {
                   ),
                 ],
               ),*/
+
       ),
+
+
     );
   }
 
-
+  _toastInfo(String info) {
+    Fluttertoast.showToast(msg: info, toastLength: Toast.LENGTH_LONG);
+  }
 
   _saveScreen() async {
     RenderRepaintBoundary boundary =
@@ -276,7 +296,7 @@ class DoodleMaker extends StatelessWidget {
       final result =
       await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
       print(result);
-    //  _toastInfo(result.toString());
+      _toastInfo('Image Saved');
     }
   }
 }

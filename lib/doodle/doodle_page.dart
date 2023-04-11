@@ -28,7 +28,7 @@ class DoodlePage extends HookWidget {
 
     final animationController = useAnimationController(
       duration: const Duration(milliseconds: 150),
-      initialValue: 1,
+      initialValue: 0,
     );
     return SafeArea(
       child: Scaffold(
@@ -97,28 +97,30 @@ class _CustomAppBar extends StatelessWidget {
        width: double.maxFinite,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              onPressed: () {
-                if (animationController.value == 0) {
-                  animationController.forward();
-                } else {
-                  animationController.reverse();
-                }
-              },
-              icon: const Icon(Icons.menu),
-            ),
-            const Text(
-              'Let\'s Draw',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 19,
+        child: InkWell(
+          onTap: () {
+            if (animationController.value == 0) {
+              animationController.forward();
+            } else {
+              animationController.reverse();
+            }
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'Options Menu  ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 19,
+                ),
               ),
-            ),
-            const SizedBox.shrink(),
-          ],
+              Icon(
+                Icons.color_lens_outlined
+              ),
+              SizedBox.shrink(),
+            ],
+          ),
         ),
       ),
     );
