@@ -88,23 +88,34 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Container(
-        color: Colors.lightBlue,
+        color: Colors.cyan,
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+              Spacer(),
               Container(
                 child: Text(
                   'Click below to create your own custom creation!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 40.0,
-                    color: Colors.black,
                     fontWeight: FontWeight.bold,
+                    color: Colors.indigo,
+/*                      foreground: Paint()
+                        ..shader = ui.Gradient.linear(
+                          const Offset(0, 100),
+                          const Offset(150, 20),
+                          <Color>[
+                            Colors.black,
+                            Colors.white,
+                          ],
+                        )*/
                   ),
                 ),
-              ), //Welcome text
+              ),
+              Spacer(),//Welcome text
               Center(
                 child: Container(
                   width: double.infinity,
@@ -115,11 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       fit: BoxFit.cover,
                       child:
                       Text("Start A New Doodle",
-                        style: TextStyle(fontSize: 45, color: Colors.blue[500]),
+                        style: TextStyle(fontSize: 45, color: Colors.white),
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
+                      primary: Colors.indigo,
                     ),
                     onPressed: () {
                       Navigator.push(
@@ -129,7 +140,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                   ),
                 ),
-              ), //Generate button
+              ),
+              Spacer(),//Generate button
               Text(
                 'Please consider donating',
                 textAlign: TextAlign.center,

@@ -53,7 +53,7 @@ class CanvasSideBar extends HookWidget {
     final scrollController = useScrollController();
     return Container(
       width: 300,
-      height: MediaQuery.of(context).size.height < 680 ? 450 : 610,
+      height: MediaQuery.of(context).size.height < 680 ? 450 : 475,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.horizontal(right: Radius.circular(10)),
@@ -73,12 +73,6 @@ class CanvasSideBar extends HookWidget {
           padding: const EdgeInsets.all(10.0),
           controller: scrollController,
           children: [
-            const SizedBox(height: 10),
-            const Text(
-              'Shapes',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const Divider(),
             Wrap(
               alignment: WrapAlignment.start,
               spacing: 5,
@@ -174,17 +168,12 @@ class CanvasSideBar extends HookWidget {
             ),
             const SizedBox(height: 10),
             const Text(
-              'Colors',
+              'Color',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const Divider(),
             ColorPalette(
               selectedColor: selectedColor,
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Size',
-              style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const Divider(),
             Row(
@@ -218,11 +207,6 @@ class CanvasSideBar extends HookWidget {
                   },
                 ),
               ],
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Actions',
-              style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const Divider(),
             Wrap(
@@ -267,7 +251,6 @@ class CanvasSideBar extends HookWidget {
                 ),*/
               ],
             ),
-            const SizedBox(height: 20),
           ],
         ),
       ),
