@@ -4,20 +4,20 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import 'doodle/doodle_page.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Simple Doodle App',
       home: MyHomePage(),
     );
@@ -25,15 +25,16 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
 GlobalKey _globalKey = GlobalKey();
 const Color kCanvasColor = Color(0xfff2f3f7);
 
-class _MyHomePageState extends State<MyHomePage> {
-
+class MyHomePageState extends State<MyHomePage> {
   Future<void>? _launched;
 
   Future<void> _launchUniversalLinkIos(Uri url) async {
@@ -62,28 +63,27 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     _requestPermission();
-
   }
 
   @override
   Widget build(BuildContext context) {
     final Uri toLaunch =
-    Uri(scheme: 'https', host: 'www.cash.app', path: '\$jcelevated/');
+        Uri(scheme: 'https', host: 'www.cash.app', path: '\$jcelevated/');
     final Uri toLaunch2 =
-    Uri(scheme: 'https', host: 'www.venmo.com', path: '/u/jcelevated/');
+        Uri(scheme: 'https', host: 'www.venmo.com', path: '/u/jcelevated/');
     final Uri toLaunch3 =
-    Uri(scheme: 'https', host: 'www.paypal.me', path: '/jcelevated1/');
-    final Uri toLaunch4 =
-    Uri(scheme: 'https', host: 'www.patreon.com', path: '/user?u=63034918/');
+        Uri(scheme: 'https', host: 'www.paypal.me', path: '/jcelevated1/');
+    final Uri toLaunch4 = Uri(
+        scheme: 'https', host: 'www.patreon.com', path: '/user?u=63034918/');
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
+        preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Container(
           color: Colors.blue,
           child: AppBar(
             backgroundColor: Colors.transparent,
             centerTitle: true,
-            title: Text('Simple Doodle App'),
+            title: const Text('Simple Doodle App'),
           ),
         ),
       ),
@@ -94,55 +94,51 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Spacer(),
-              Container(
-                child: Text(
-                  'Click below to create your own custom creation!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.indigo,
+              const Spacer(),
+              const Text(
+                'Click below to create your own custom creation!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.indigo,
 /*                      foreground: Paint()
-                        ..shader = ui.Gradient.linear(
-                          const Offset(0, 100),
-                          const Offset(150, 20),
-                          <Color>[
-                            Colors.black,
-                            Colors.white,
-                          ],
-                        )*/
-                  ),
+                      ..shader = ui.Gradient.linear(
+                        const Offset(0, 100),
+                        const Offset(150, 20),
+                        <Color>[
+                          Colors.black,
+                          Colors.white,
+                        ],
+                      )*/
                 ),
               ),
-              Spacer(),//Welcome text
+              const Spacer(), //Welcome text
               Center(
                 child: Container(
                   width: double.infinity,
                   height: 100.0,
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
-                    child: FittedBox(
+                    child: const FittedBox(
                       fit: BoxFit.cover,
-                      child:
-                      Text("Start A New Doodle",
+                      child: Text(
+                        "Start A New Doodle",
                         style: TextStyle(fontSize: 45, color: Colors.white),
                       ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.indigo,
                     ),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const DoodleMaker()),
+                        MaterialPageRoute(
+                            builder: (context) => const DoodleMaker()),
                       );
                     },
                   ),
                 ),
               ),
-              Spacer(),//Generate button
-              Text(
+              const Spacer(), //Generate button
+              const Text(
                 'Please consider donating',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -156,9 +152,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   InkWell(
                     child: Column(
-                      children: [
-                        Icon(Icons.monetization_on_outlined, color: Colors.black),
-                        const Text('Cashapp'),
+                      children: const [
+                        Icon(Icons.monetization_on_outlined,
+                            color: Colors.black),
+                        Text('Cashapp'),
                       ],
                     ),
                     onTap: () => setState(() {
@@ -167,9 +164,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   InkWell(
                     child: Column(
-                      children: [
-                        Icon(Icons.monetization_on_outlined, color: Colors.black),
-                        const Text('Venmo'),
+                      children: const [
+                        Icon(Icons.monetization_on_outlined,
+                            color: Colors.black),
+                        Text('Venmo'),
                       ],
                     ),
                     onTap: () => setState(() {
@@ -178,9 +176,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   InkWell(
                     child: Column(
-                      children: [
-                        Icon(Icons.monetization_on_outlined, color: Colors.black),
-                        const Text('Paypal'),
+                      children: const [
+                        Icon(Icons.monetization_on_outlined,
+                            color: Colors.black),
+                        Text('Paypal'),
                       ],
                     ),
                     onTap: () => setState(() {
@@ -189,9 +188,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   InkWell(
                     child: Column(
-                      children: [
-                        Icon(Icons.monetization_on_outlined, color: Colors.black),
-                        const Text('Patreon'),
+                      children: const [
+                        Icon(Icons.monetization_on_outlined,
+                            color: Colors.black),
+                        Text('Patreon'),
                       ],
                     ),
                     onTap: () => setState(() {
@@ -220,24 +220,19 @@ class _MyHomePageState extends State<MyHomePage> {
     ].request();
 
     final info = statuses[Permission.storage].toString();
-    print(info);
-  //  _toastInfo(info);
+    debugPrint(info);
   }
-/*  _toastInfo(String info) {
-    Fluttertoast.showToast(msg: info, toastLength: Toast.LENGTH_LONG);
-  }*/
 }
+
 // Second route
 class DoodleMaker extends StatelessWidget {
   const DoodleMaker({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
+        preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Container(
           color: Colors.blue,
           child: AppBar(
@@ -251,47 +246,23 @@ class DoodleMaker extends StatelessWidget {
         heroTag: "paint_save",
         tooltip: 'Save',
         onPressed: () {
-          Text('Image Saved');
+          const Text('Image Saved');
           _saveScreen();
         },
         child: const Icon(Icons.save),
       ),
       body: SafeArea(
-          child:
-              Column(
-                children: [
-                  Expanded(
-                    child:
-                        RepaintBoundary(
-                          key: _globalKey,
-                                child: DoodlePage(),
-                        ),
-                  ),
-                ],
+        child: Column(
+          children: [
+            Expanded(
+              child: RepaintBoundary(
+                key: _globalKey,
+                child: const DoodlePage(),
               ),
-/*              Column(
-                children: [
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          onPressed: _saveScreen,
-                          child: const Text('Generate New Fractal'),
-                        ), //Generate new fractal
-                        ElevatedButton(
-                          onPressed: _saveScreen,
-                          child: const Text('Save to Device'),
-                        ), //Save to device
-                      ],
-                    ),
-                  ),
-                ],
-              ),*/
-
+            ),
+          ],
+        ),
       ),
-
-
     );
   }
 
@@ -301,13 +272,13 @@ class DoodleMaker extends StatelessWidget {
 
   _saveScreen() async {
     RenderRepaintBoundary boundary =
-    _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+        _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage();
-    ByteData? byteData = await (image.toByteData(format: ui.ImageByteFormat.png) as FutureOr<ByteData?>);
+    ByteData? byteData = await (image.toByteData(format: ui.ImageByteFormat.png));
     if (byteData != null) {
       final result =
-      await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
-      print(result);
+          await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
+      debugPrint(result);
       _toastInfo('Image Saved');
     }
   }

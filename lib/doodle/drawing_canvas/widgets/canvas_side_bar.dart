@@ -3,20 +3,16 @@ import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:file_picker/file_picker.dart';
-import 'package:file_saver/file_saver.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:easy_doodles/main.dart';
 import 'package:easy_doodles/doodle/drawing_canvas/models/drawing_mode.dart';
 import 'package:easy_doodles/doodle/drawing_canvas/models/sketch.dart';
 import 'package:easy_doodles/doodle/drawing_canvas/widgets/color_palette.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:universal_html/html.dart' as html;
-import 'package:url_launcher/url_launcher.dart';
 
 class CanvasSideBar extends HookWidget {
   final ValueNotifier<Color> selectedColor;
@@ -306,19 +302,6 @@ class CanvasSideBar extends HookWidget {
     }
 
     return completer.future;
-  }
-
-  Future<void> _launchUrl(String url) async {
-    if (kIsWeb) {
-      html.window.open(
-        url,
-        url,
-      );
-    } else {
-      if (!await launchUrl(Uri.parse(url))) {
-        throw 'Could not launch $url';
-      }
-    }
   }
 
   Future<Uint8List?> getBytes() async {

@@ -230,8 +230,6 @@ class SketchPainter extends CustomPainter {
         canvas.drawLine(firstPoint, lastPoint, paint);
       } else if (sketch.type == SketchType.circle) {
         canvas.drawOval(rect, paint);
-        // Uncomment this line if you need a PERFECT CIRCLE
-        // canvas.drawCircle(centerPoint, radius , paint);
       } else if (sketch.type == SketchType.polygon) {
         Path polygonPath = Path();
         int sides = sketch.sides;
@@ -240,7 +238,7 @@ class SketchPainter extends CustomPainter {
         double radian = 0.0;
 
         Offset startPoint =
-        Offset(radius * math.cos(radian), radius * math.sin(radian));
+            Offset(radius * math.cos(radian), radius * math.sin(radian));
 
         polygonPath.moveTo(
             startPoint.dx + centerPoint.dx, startPoint.dy + centerPoint.dy);
@@ -260,4 +258,3 @@ class SketchPainter extends CustomPainter {
     return oldDelegate.sketches != sketches;
   }
 }
-

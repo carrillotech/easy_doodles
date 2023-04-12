@@ -93,8 +93,8 @@ class _CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-       height: kToolbarHeight,
-       width: double.maxFinite,
+      height: kToolbarHeight,
+      width: double.maxFinite,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: InkWell(
@@ -115,9 +115,7 @@ class _CustomAppBar extends StatelessWidget {
                   fontSize: 19,
                 ),
               ),
-              Icon(
-                Icons.color_lens_outlined
-              ),
+              Icon(Icons.color_lens_outlined),
               SizedBox.shrink(),
             ],
           ),
