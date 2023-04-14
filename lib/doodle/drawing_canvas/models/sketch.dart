@@ -1,3 +1,6 @@
+// Used tutorial and source from https://www.youtube.com/watch?v=SmqttvYdkHI
+// https://github.com/JideGuru/flutter_drawing_board
+
 import 'package:flutter/material.dart';
 import 'package:easy_doodles/doodle/drawing_canvas/models/drawing_mode.dart';
 

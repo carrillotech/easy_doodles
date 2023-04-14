@@ -1,3 +1,5 @@
+
+
 import 'dart:ui' as ui;
 import 'dart:async';
 import 'dart:typed_data';
@@ -95,23 +97,22 @@ class MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               const Spacer(),
-              const Text(
+              Text(
                 'Click below to create your own custom creation!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.indigo,
-/*                      foreground: Paint()
+                    fontSize: 40.0,
+/*                  fontWeight: FontWeight.bold,
+                  color: Colors.white70,*/
+                    foreground: Paint()
                       ..shader = ui.Gradient.linear(
                         const Offset(0, 100),
                         const Offset(150, 20),
                         <Color>[
-                          Colors.black,
+                          Colors.white70,
                           Colors.white,
                         ],
-                      )*/
-                ),
+                      )),
               ),
               const Spacer(), //Welcome text
               Center(
@@ -143,7 +144,7 @@ class MyHomePageState extends State<MyHomePage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
-                  color: Colors.black,
+                  color: Colors.white70,
                   fontWeight: FontWeight.bold,
                 ),
               ), //Donate text
@@ -198,12 +199,6 @@ class MyHomePageState extends State<MyHomePage> {
                       _launched = _launchUniversalLinkIos(toLaunch4);
                     }),
                   ),
-                  // commented out but included both methods to open url
-                  // InkWell(
-                  //   onTap: () => setState(() {
-                  //     _launched = _launchUniversalLinkIos(toLaunch); //Launch a universal link in a native app, fallback to Safari.(Youtube)')
-                  //     _launched = _launchInBrowser(toLaunch); //Launch in browser
-                  //   }),
                 ],
               ), // Donation options
               FutureBuilder<void>(future: _launched, builder: _launchStatus),
@@ -239,6 +234,12 @@ class DoodleMaker extends StatelessWidget {
             backgroundColor: Colors.transparent,
             centerTitle: true,
             title: const Text('Simple Doodle App'),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.home_rounded),
+            ),
           ),
         ),
       ),
@@ -274,7 +275,8 @@ class DoodleMaker extends StatelessWidget {
     RenderRepaintBoundary boundary =
         _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage();
-    ByteData? byteData = await (image.toByteData(format: ui.ImageByteFormat.png));
+    ByteData? byteData =
+        await (image.toByteData(format: ui.ImageByteFormat.png));
     if (byteData != null) {
       final result =
           await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());

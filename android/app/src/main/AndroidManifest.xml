@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.carrillotech.easy_doodles">
    <application
-        android:label="easy_doodles"
+        android:label="Simple Doodles"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

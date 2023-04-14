@@ -1,3 +1,6 @@
+// Used tutorial and source from https://www.youtube.com/watch?v=SmqttvYdkHI
+// https://github.com/JideGuru/flutter_drawing_board
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart' hide Image;
@@ -56,7 +59,6 @@ class DoodlePage extends HookWidget {
             ),
             Positioned(
               top: kToolbarHeight + 10,
-              // left: -5,
               child: SlideTransition(
                 position: Tween<Offset>(
                   begin: const Offset(-1, 0),
@@ -105,19 +107,23 @@ class _CustomAppBar extends StatelessWidget {
               animationController.reverse();
             }
           },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                'Options Menu  ',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 19,
+          child: Container(
+            color: Colors.blue,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Options Menu  ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              Icon(Icons.color_lens_outlined),
-              SizedBox.shrink(),
-            ],
+                Icon(Icons.color_lens_outlined, color: Colors.white),
+                SizedBox.shrink(),
+              ],
+            ),
           ),
         ),
       ),

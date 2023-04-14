@@ -1,3 +1,6 @@
+// Used tutorial and source from https://www.youtube.com/watch?v=SmqttvYdkHI
+// https://github.com/JideGuru/flutter_drawing_board
+
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
@@ -49,7 +52,7 @@ class CanvasSideBar extends HookWidget {
     final scrollController = useScrollController();
     return Container(
       width: 300,
-      height: MediaQuery.of(context).size.height < 680 ? 450 : 475,
+      height: MediaQuery.of(context).size.height < 680 ? 450 : 517,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.horizontal(right: Radius.circular(10)),
@@ -138,28 +141,27 @@ class CanvasSideBar extends HookWidget {
                 ),
               ],
             ),
-
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 150),
               child: drawingMode.value == DrawingMode.polygon
                   ? Row(
-                children: [
-                  const Text(
-                    'Polygon Sides: ',
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  Slider(
-                    value: polygonSides.value.toDouble(),
-                    min: 3,
-                    max: 8,
-                    onChanged: (val) {
-                      polygonSides.value = val.toInt();
-                    },
-                    label: '${polygonSides.value}',
-                    divisions: 5,
-                  ),
-                ],
-              )
+                      children: [
+                        const Text(
+                          'Polygon Sides: ',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                        Slider(
+                          value: polygonSides.value.toDouble(),
+                          min: 3,
+                          max: 8,
+                          onChanged: (val) {
+                            polygonSides.value = val.toInt();
+                          },
+                          label: '${polygonSides.value}',
+                          divisions: 5,
+                        ),
+                      ],
+                    )
                   : const SizedBox.shrink(),
             ),
             const SizedBox(height: 10),
@@ -218,13 +220,13 @@ class CanvasSideBar extends HookWidget {
                   builder: (_, canRedo, __) {
                     return TextButton(
                       onPressed:
-                      canRedo ? () => undoRedoStack.value.redo() : null,
+                          canRedo ? () => undoRedoStack.value.redo() : null,
                       child: const Text('Redo'),
                     );
                   },
                 ),
                 TextButton(
-                  child: const Text('Clear'),
+                  child: const Text('Clear Screen'),
                   onPressed: () => undoRedoStack.value.clear(),
                 ),
                 TextButton(
@@ -237,7 +239,7 @@ class CanvasSideBar extends HookWidget {
                   },
                   child: Text(
                     backgroundImage.value == null
-                        ? 'Add Background'
+                        ? 'Add Background Image From Gallery'
                         : 'Remove Background',
                   ),
                 ),
@@ -252,24 +254,6 @@ class CanvasSideBar extends HookWidget {
       ),
     );
   }
-
-/*  void saveFile(Uint8List bytes, String extension) async {
-    if (kIsWeb) {
-      html.AnchorElement()
-        ..href = '${Uri.dataFromBytes(bytes, mimeType: 'image/$extension')}'
-        ..download =
-            'FlutterLetsDraw-${DateTime.now().toIso8601String()}.$extension'
-        ..style.display = 'none'
-        ..click();
-    } else {
-      await FileSaver.instance.saveFile(
-        'FlutterLetsDraw-${DateTime.now().toIso8601String()}.$extension',
-        bytes,
-        extension,
-        mimeType: extension == 'png' ? MimeType.PNG : MimeType.JPEG,
-      );
-    }
-  }*/
 
   Future<ui.Image> get _getImage async {
     final completer = Completer<ui.Image>();

@@ -1,3 +1,6 @@
+// Used tutorial and source from https://www.youtube.com/watch?v=SmqttvYdkHI
+// https://github.com/JideGuru/flutter_drawing_board
+
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
